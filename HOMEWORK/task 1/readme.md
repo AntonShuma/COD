@@ -1,5 +1,5 @@
 
-
+![](pics/CLOS.PNG)
 
 ### 		IPAM
 
