@@ -49,7 +49,14 @@ interface Loopback1
    description UNDERLAY
    ip address 10.0.1.1/32
    ip ospf area 0.0.0.0
-
+!
+router ospf 100
+   router-id 10.0.1.1
+   bfd default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   max-lsa 12000
+!
 ```
 
 - #### [leaf-2](conf/leaf-2.conf)
@@ -86,6 +93,13 @@ interface Loopback1
    ip address 10.0.2.1/32
    ip ospf area 0.0.0.0
 !
+router ospf 100
+   router-id 10.0.1.1
+   bfd default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   max-lsa 12000
+!
 ```
 
 - #### [leaf-3](conf/leaf-3.conf)
@@ -121,6 +135,14 @@ interface Loopback1
    description UNDERLAY
    ip address 10.0.3.1/32
    ip ospf area 0.0.0.0
+!
+router ospf 100
+   router-id 10.0.1.1
+   bfd default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   max-lsa 12000
+!
 ```
 
 
@@ -169,6 +191,15 @@ interface Loopback1
    description UNDERLAY
    ip address 10.1.0.1/32
    ip ospf area 0.0.0.0
+!
+router ospf 100
+   router-id 10.0.1.1
+   bfd default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   no passive-interface Ethernet3
+   max-lsa 12000
+!
 ```
 
 
@@ -216,6 +247,14 @@ interface Loopback1
    description UNDERLAY
    ip address 10.2.0.1/32
    ip ospf area 0.0.0.0
+!
+router ospf 100
+   router-id 10.0.1.1
+   bfd default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   no passive-interface Ethernet3
+   max-lsa 12000
 !
 ```
 
