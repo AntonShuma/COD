@@ -17,14 +17,207 @@
 ### Конфигурация оборудования
 
 - #### [leaf-1](conf/leaf-1.conf)
+  
+```
+hostname LEAF-1
+!
+spanning-tree mode mstp
+!
+interface Ethernet1
+   description TO_SPINE-1
+   no switchport
+   ip address 10.1.1.1/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 l0w89E/+c20=
+!
+interface Ethernet2
+   description TO_SPINE-2
+   no switchport
+   ip address 10.2.1.1/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 v1srhOqHBBs=
+!
+interface Loopback1
+   description UNDERLAY
+   ip address 10.0.1.1/32
+   ip ospf area 0.0.0.0
+
+```
 
 - #### [leaf-2](conf/leaf-2.conf)
+   
+```
+hostname LEAF-2
+!
+spanning-tree mode mstp
+!
+interface Ethernet1
+   description TO_SPINE-1
+   no switchport
+   ip address 10.1.2.1/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 l0w89E/+c20=
+!
+interface Ethernet2
+   description TO_SPINE-2
+   no switchport
+   ip address 10.2.2.1/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 v1srhOqHBBs=
+!
+interface Loopback1
+   description UNDERLAY
+   ip address 10.0.2.1/32
+   ip ospf area 0.0.0.0
+!
+```
 
 - #### [leaf-3](conf/leaf-3.conf)
+  
+```
+hostname LEAF-3
+!
+spanning-tree mode mstp
+!
+interface Ethernet1
+   description TO_SPINE-1
+   no switchport
+   ip address 10.1.3.1/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 l0w89E/+c20=
+!
+interface Ethernet2
+   description TO_SPINE-2
+   no switchport
+   ip address 10.2.3.1/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 v1srhOqHBBs=
+!
+interface Loopback1
+   description UNDERLAY
+   ip address 10.0.3.1/32
+   ip ospf area 0.0.0.0
+```
+
 
 - #### [spine-1](conf/spine-1.conf)
 
+  
+```
+hostname SPINE-1
+!
+spanning-tree mode mstp
+!
+interface Ethernet1
+   description TO_LEAF-1
+   no switchport
+   ip address 10.1.1.0/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 l0w89E/+c20=
+!
+interface Ethernet2
+   description TO_LEAF-2
+   no switchport
+   ip address 10.1.2.0/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 v1srhOqHBBs=
+!
+interface Ethernet3
+   description TO_LEAF-3
+   no switchport
+   ip address 10.1.3.0/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 v1srhOqHBBs=
+!
+interface Loopback1
+   description UNDERLAY
+   ip address 10.1.0.1/32
+   ip ospf area 0.0.0.0
+```
+
+
 - #### [spine-2](conf/spine-2.conf)
+  
+```
+hostname SPINE-2
+!
+spanning-tree mode mstp
+!
+interface Ethernet1
+   description TO_LEAF-1
+   no switchport
+   ip address 10.2.1.0/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 l0w89E/+c20=
+!
+interface Ethernet2
+   description TO_LEAF-2
+   no switchport
+   ip address 10.2.2.0/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 v1srhOqHBBs=
+!
+interface Ethernet3
+   description TO_LEAF-3
+   no switchport
+   ip address 10.2.3.0/31
+   bfd interval 100 min-rx 100 multiplier 3
+   ip ospf neighbor bfd
+   ip ospf network point-to-point
+   ip ospf authentication message-digest
+   ip ospf area 0.0.0.0
+   ip ospf message-digest-key 1 md5 7 v1srhOqHBBs=
+!
+interface Loopback1
+   description UNDERLAY
+   ip address 10.2.0.1/32
+   ip ospf area 0.0.0.0
+!
+```
 
 
 
