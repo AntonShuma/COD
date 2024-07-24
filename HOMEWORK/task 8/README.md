@@ -678,3 +678,36 @@ Vxlan1 is up, line protocol is up (connected)
   Shared Router MAC is 0000.0000.0000
 ```
 
+- #### ROUTER
+
+```
+ROUTER#sho ip bgp neighbors 10.0.0.0 advertised-routes 
+BGP routing table information for VRF default
+Router identifier 10.0.0.3, local AS number 65111
+Route status codes: * - valid, > - active, # - not installed, E - ECMP head, e - ECMP
+                    S - Stale, c - Contributing to ECMP, b - backup, L - labeled-unicast
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+         Network                Next Hop            Metric  LocPref Weight  Path
+ * >     0.0.0.0/0              10.0.0.1              -       -       -       65111 ?
+ * >     1.1.1.1/32             10.0.0.1              -       -       -       65111 i
+ * >     10.0.0.0/31            10.0.0.1              -       -       -       65111 i
+ * >     10.0.0.2/31            10.0.0.1              -       -       -       65111 i
+ * >     192.168.200.0/24       10.0.0.1              -       -       -       65111 65103 i
+
+ROUTER#sho ip bgp neighbors 10.0.0.2 advertised-routes
+BGP routing table information for VRF default
+Router identifier 10.0.0.3, local AS number 65111
+Route status codes: * - valid, > - active, # - not installed, E - ECMP head, e - ECMP
+                    S - Stale, c - Contributing to ECMP, b - backup, L - labeled-unicast
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+         Network                Next Hop            Metric  LocPref Weight  Path
+ * >     0.0.0.0/0              10.0.0.3              -       -       -       65111 ?
+ * >     1.1.1.1/32             10.0.0.3              -       -       -       65111 i
+ * >     10.0.0.0/31            10.0.0.3              -       -       -       65111 i
+ * >     10.0.0.2/31            10.0.0.3              -       -       -       65111 i
+ * >     192.168.100.0/24       10.0.0.3              -       -       -       65111 65103 i
+```
